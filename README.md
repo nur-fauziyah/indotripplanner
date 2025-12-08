@@ -9,6 +9,7 @@ IndoTripPlanner is a web-based application that lets users explore tourist desti
 - Flask
 - HTML, CSS, JavaScript
 - MySQL (XAMPP)
+- Flask-SQLAlchemy
 - Pandas
 - scikit-learn (TF-IDF & cosine similarity for recommendations)
 - Bootstrap (optional)
