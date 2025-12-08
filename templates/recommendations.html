@@ -1,0 +1,23 @@
+<!-- recommendations.html -->
+{% extends 'dashboard.html' %}
+
+{% block content %}
+<div class="tm-black-bg tm-list-item-text">
+    <center><h1>Rekomendasi Untukmu</h1></center>
+</div>
+        <div id="budaya" class="tm-tab-content">
+            {% for wisata in recommendations %}
+            <a href="{{ url_for('detail', place_id=wisata.place_id) }}">
+                <div class="tm-list-item">      
+                    <img src="{{ wisata.image }}" alt="{{ wisata.place_name }}" class="tm-list-item-img">
+                    <div class="tm-black-bg tm-list-item-text">
+                        <h3 class="tm-list-item-name">{{ wisata.place_name }}<span class="tm-list-item-price">{{ wisata.rating }}</span></h3>
+                        <p class="tm-list-item-description">
+                            {{ wisata.description[:100] }}{% if wisata.description|length > 100 %}...{% endif %}
+                        </p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+{% endblock %}

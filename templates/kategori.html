@@ -1,0 +1,165 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div id="flash-message" class="alert-container">
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  <center>{{ message }}</center>
+                </div>
+              {% endfor %}
+              <script>
+                setTimeout(function() {
+                    var flashMessage = document.getElementById('flash-message');
+                    flashMessage.remove();
+                }, 3000); // 3 detik
+            </script>
+            </div>
+          {% endif %}
+        {% endwith %}
+<div id="drink" class="tm-page-content">
+    <!-- Drink Menu Page -->
+    <nav class="tm-black-bg tm-drinks-nav">
+        <ul>
+            <li>
+                <a href="#budaya" class="tm-tab-link active" data-id="budaya">Budaya</a>
+            </li>
+            <li>
+                <a href="#tamanhiburan" class="tm-tab-link" data-id="tamanhiburan">Taman Hiburan</a>
+            </li>
+            <li>
+                <a href="#cagaralam" class="tm-tab-link" data-id="cagaralam">Cagar Alam</a>
+            </li>
+            <li>
+                <a href="#bahari" class="tm-tab-link" data-id="bahari">Bahari</a>
+            </li>
+            <li>
+                <a href="#pusatbelanja" class="tm-tab-link" data-id="pusatbelanja">Pusat Belanja</a>
+            </li>
+            <li>
+                <a href="#ibadah" class="tm-tab-link" data-id="ibadah">Ibadah</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="budaya" class="tm-tab-content">
+        {% for wisata in budaya %}
+        <a href="{{ url_for('detail', place_id=wisata.place_id) }}">
+            <div class="tm-list-item">      
+                <img src="{{ wisata.image }}" alt="{{ wisata.place_name }}" class="tm-list-item-img">
+                <div class="tm-black-bg tm-list-item-text">
+                    <h3 class="tm-list-item-name">{{ wisata.place_name }}<span class="tm-list-item-price">{{ wisata.rating }}</span></h3>
+                    <p class="tm-list-item-description">
+                        {{ wisata.description[:100] }}{% if wisata.description|length > 100 %}...{% endif %}
+                    </p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    <div id="tamanhiburan" class="tm-tab-content">
+        {% for wisata in tamanhiburan %}
+            <a href="{{ url_for('detail', place_id=wisata.place_id) }}">
+            <div class="tm-list-item">          
+                <img src="{{ wisata.image }}" alt="{{ wisata.place_name }}" class="tm-list-item-img">
+                <div class="tm-black-bg tm-list-item-text">
+                    <h3 class="tm-list-item-name">{{ wisata.place_name }}<span class="tm-list-item-price">{{ wisata.rating }}</span></h3>
+                    <p class="tm-list-item-description">
+                        {{ wisata.description[:100] }}{% if wisata.description|length > 100 %}...{% endif %}
+                    </p>
+                </div>
+            </div>
+            </a>
+        {% endfor %}
+    </div>
+
+    <div id="cagaralam" class="tm-tab-content">
+        {% for wisata in cagaralam %}
+        <a href="{{ url_for('detail', place_id=wisata.place_id) }}">
+            <div class="tm-list-item">          
+                <img src="{{ wisata.image }}" alt="{{ wisata.place_name }}" class="tm-list-item-img">
+                <div class="tm-black-bg tm-list-item-text">
+                    <h3 class="tm-list-item-name">{{ wisata.place_name }}<span class="tm-list-item-price">{{ wisata.rating }}</span></h3>
+                    <p class="tm-list-item-description">
+                        {{ wisata.description[:100] }}{% if wisata.description|length > 100 %}...{% endif %}
+                    </p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    <div id="bahari" class="tm-tab-content">
+        {% for wisata in bahari %}
+        <a href="{{ url_for('detail', place_id=wisata.place_id) }}">
+            <div class="tm-list-item">          
+                <img src="{{ wisata.image }}" alt="{{ wisata.place_name }}" class="tm-list-item-img">
+                <div class="tm-black-bg tm-list-item-text">
+                    <h3 class="tm-list-item-name">{{ wisata.place_name }}<span class="tm-list-item-price">{{ wisata.rating }}</span></h3>
+                    <p class="tm-list-item-description">
+                        {{ wisata.description[:100] }}{% if wisata.description|length > 100 %}...{% endif %}
+                    </p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    <div id="pusatbelanja" class="tm-tab-content">
+        {% for wisata in pusatbelanja %}
+        <a href="{{ url_for('detail', place_id=wisata.place_id) }}">
+            <div class="tm-list-item">          
+                <img src="{{ wisata.image }}" alt="{{ wisata.place_name }}" class="tm-list-item-img">
+                <div class="tm-black-bg tm-list-item-text">
+                    <h3 class="tm-list-item-name">{{ wisata.place_name }}<span class="tm-list-item-price">{{ wisata.rating }}</span></h3>
+                    <p class="tm-list-item-description">
+                        {{ wisata.description[:100] }}{% if wisata.description|length > 100 %}...{% endif %}
+                    </p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    <div id="ibadah" class="tm-tab-content">
+        {% for wisata in ibadah %}
+        <a href="{{ url_for('detail', place_id=wisata.place_id) }}">
+            <div class="tm-list-item">          
+                <img src="{{ wisata.image }}" alt="{{ wisata.place_name }}" class="tm-list-item-img">
+                <div class="tm-black-bg tm-list-item-text">
+                    <h3 class="tm-list-item-name">{{ wisata.place_name }}<span class="tm-list-item-price">{{ wisata.rating }}</span></h3>
+                    <p class="tm-list-item-description">
+                        {{ wisata.description[:100] }}{% if wisata.description|length > 100 %}...{% endif %}
+                    </p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <!-- end Drink Menu Page -->
+</div>
+
+<script src="{{url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        // Fungsi untuk menetapkan kelas active saat tautan tab di klik
+        $('.tm-tab-link').click(function(e) {
+            e.preventDefault(); // Mencegah tautan tab mengarahkan langsung ke anker
+
+            var tabId = $(this).attr('href'); // Ambil ID dari tautan yang diklik
+            $('.tm-tab-link').removeClass('active'); // Hapus kelas active dari semua tautan tab
+            $(this).addClass('active'); // Tambahkan kelas active ke tautan yang diklik
+
+            // Sembunyikan semua konten tab dan tampilkan konten tab yang sesuai
+            $('.tm-tab-content').hide();
+            $(tabId).show();
+        });
+
+        // Set default tab yang aktif
+        $('.tm-tab-link.active').click(); // Jalankan klik pada tab yang aktif secara default
+    });
+
+</script>
+{% endblock %}

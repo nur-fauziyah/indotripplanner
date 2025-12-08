@@ -1,0 +1,53 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+<div>
+    <div class="tm-black-bg tm-contact-text-container">
+        <div class="tm-list-item tm-list-item-2"> 
+            <button onclick="history.back()">
+                <i class="fas fa-arrow-left tm-page-link-icon"></i>
+            </button>
+            <form action="{{ url_for('add_favorite', place_id=wisata.place_id) }}" method="post">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-heart tm-page-link-icon"></i></button>
+            </form>
+        </div>
+        <br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div id="flash-message" class="alert-container">
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  <center>{{ message }}</center>
+                </div>
+              {% endfor %}
+              <script>
+                setTimeout(function() {
+                    var flashMessage = document.getElementById('flash-message');
+                    flashMessage.remove();
+                }, 3000); // 3 detik
+            </script>
+            </div>
+          {% endif %}
+        {% endwith %}
+        <h2 class="tm-text-primary">
+            <br>
+            <center>{{ wisata.place_name }}</center>
+        </h2>       
+        <div class="tm-list-item tm-list-item-2"> 
+            <img src="{{ wisata.image }}" alt="{{ wisata.place_name }}" class="tm-list-item-img tm-list-item-img-big tm-img-left">               
+            <div class="tm-list-item-text-2">
+                <p>Category : {{ wisata.category }}</p>
+                <p>Lokasi : {{ wisata.city }}</p>
+                <p>Rating : {{ wisata.rating }}</p>
+                <p>Price : {{ wisata.price }}</p>
+            </div>                           
+        </div>
+        <br>
+        <p style="text-align: justify;">{{ wisata.description }}</p>
+        <br>
+        <p class="mb-0 mt-3">
+        <a href="{{ wisata.url }}" class="text-center" target="_blank"> Lihat Informasi Lengkapnya</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

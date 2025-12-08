@@ -1,0 +1,45 @@
+{% extends 'admin.html' %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div id="flash-message" class="alert-container">
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  <center>{{ message }}</center>
+                </div>
+              {% endfor %}
+              <script>
+                setTimeout(function() {
+                    var flashMessage = document.getElementById('flash-message');
+                    flashMessage.remove();
+                }, 3000); // 3 detik
+            </script>
+            </div>
+          {% endif %}
+        {% endwith %}
+<div class="container">
+    <!-- Ringkasan Statistik -->
+    <div class="tm-black-bg tm-mb-20 tm-about-box-2">              
+        <div class="tm-list-item tm-list-item-2">                
+          <div class="tm-list-item-text-2">
+            <p style="font-size: 25px;">Tempat Wisata</p> 
+            <i class="fas fa-fire tm-page-link-icon-2"></i>
+            <span style="font-size: 30px;">{{ total_places }}</span>
+            <a href="{{ url_for('manage_wisata') }}" class="text-center"><p style="margin-left: 150px; color: white">Lihat...</p></a>
+          </div>
+          <div class="tm-list-item-text-2">
+            <p style="font-size: 25px;">Pengguna</p> 
+            <i class="fas fa-users tm-page-link-icon-2"></i>
+            <span style="font-size: 30px;">{{ total_users }}</span>
+            <a href="{{ url_for('manage_user') }}" class="text-center"><p style="margin-left: 150px; color: white">Lihat...</p></a>                
+          </div>               
+        </div>
+        <!-- <br>
+        <h2 class="tm-text-primary"><center>Aktifitas Terbaru</center></h2>
+        {% for activity in recent_activity %}
+          <p class="tm-text-primary">[INFO]<span style="color: white;"> {{ activity.place_name }} baru saja ditambahkan </span></p> 
+        {% endfor %} -->
+      </div>
+</div>
+{% endblock %}

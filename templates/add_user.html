@@ -1,0 +1,86 @@
+{% extends 'admin.html' %}
+
+{% block content %}
+<style>
+    .tm-flex-container {
+        display: flex;
+        align-items: center;
+    }
+    
+    .tm-flex-container label {
+        flex: 0 0 150px; /* Adjust this value to control the width of the label */
+        margin-right: 10px; /* Adjust this value to control the spacing between the label and input */
+    }
+    
+    .tm-flex-container input,
+    .tm-flex-container textarea,
+    .tm-flex-container select {
+        flex: 1;
+    }
+
+    .tm-form-control option {
+        color: black;  /* Mengubah warna teks option menjadi hitam */
+    }
+</style>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div id="flash-message" class="alert-container">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  <center>{{ message }}</center>
+                </div>
+            {% endfor %}
+            <script>
+                setTimeout(function() {
+                    var flashMessage = document.getElementById('flash-message');
+                    flashMessage.remove();
+                }, 3000); // 3 detik
+            </script>
+        </div>
+    {% endif %}
+{% endwith %}
+<div class="tm-black-bg tm-contact-form-container tm-align-center">
+    <form action="{{ url_for('add_user')}}" method="POST" id="contact-form">
+      <div class="tm-form-group">
+        <div class="tm-flex-container">
+        <label>Username</label>
+        <input type="text" name="username" id="username" class="tm-form-control" placeholder="Username" required="" />
+        </div>
+      </div>
+      <div class="tm-form-group">
+        <div class="tm-flex-container">
+        <label>Password</label>
+        <input type="password" name="password" id="password" class="tm-form-control" placeholder="Password" required="" />
+        </div>
+      </div>
+      <div class="tm-form-group">
+        <div class="tm-flex-container">
+        <label>Lokasi</label>
+        <input type="text" name="location" id="location" class="tm-form-control" placeholder="Lokasi" required="" />
+        </div>
+      </div>
+      <div class="tm-form-group">
+        <div class="tm-flex-container">
+        <label>Usia</label>
+        <input type="text" name="age" id="age" class="tm-form-control" placeholder="Usia" required="" />
+        </div>
+      </div>   
+      <div class="tm-form-group">
+        <div class="tm-flex-container">
+        <label>Role</label>
+        <select name="level" id="level" class="tm-form-control" required="">
+          <option value="" disabled selected>Pilih Kategori</option>
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+          <!-- Tambahkan opsi lain sesuai kebutuhan -->
+        </select>
+        </div>
+      </div>     
+      <div>
+        <button type="submit" class="tm-btn-primary tm-align-right">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'admin.html' %}
+
+{% block content %}
+<style>
+    .tm-flex-container {
+        display: flex;
+        align-items: center;
+    }
+    
+    .tm-flex-container label {
+        flex: 0 0 150px; /* Adjust this value to control the width of the label */
+        margin-right: 10px; /* Adjust this value to control the spacing between the label and input */
+    }
+    
+    .tm-flex-container input,
+    .tm-flex-container textarea,
+    .tm-flex-container select {
+        flex: 1;
+    }
+
+    .tm-form-control option {
+        color: black;  /* Mengubah warna teks option menjadi hitam */
+    }
+</style>
+<div class="tm-black-bg tm-contact-form-container tm-align-center">
+  <div class="tm-list-item tm-list-item-2"> 
+      <button onclick="history.back()">
+          <i class="fas fa-arrow-left tm-page-link-icon"></i>
+      </button>
+  </div>
+  <br>
+    <form action="{{ url_for('edit_wisata', place_id=wisata.place_id) }}" method="POST" id="contact-form">
+      <div class="tm-form-group">
+        <div class="tm-flex-container">
+        <label>Nama</label>
+        <input type="text" name="place_name" id="place_name" class="tm-form-control" placeholder="Nama" required="" value="{{ wisata.place_name }}"/>
+        </div>
+      </div>   
+      <div class="tm-form-group">
+        <div class="tm-flex-container">
+            <label>Kategori</label>
+            <select name="category" id="category" class="tm-form-control" required="">
+                <option value="" disabled>Pilih Kategori</option>
+                <option value="Taman Hiburan" {% if wisata.category == "Taman Hiburan" %} selected {% endif %}>Taman Hiburan</option>
+                <option value="Budaya" {% if wisata.category == "Budaya" %} selected {% endif %}>Budaya</option>
+                <option value="Cagar Alam" {% if wisata.category == "Cagar Alam" %} selected {% endif %}>Cagar Alam</option>
+                <option value="Bahari" {% if wisata.category == "Bahari" %} selected {% endif %}>Bahari</option>
+                <option value="Pusat Perbelanjaan" {% if wisata.category == "Pusat Perbelanjaan" %} selected {% endif %}>Pusat Perbelanjaan</option>
+                <option value="Ibadah" {% if wisata.category == "Ibadah" %} selected {% endif %}>Ibadah</option>
+                <!-- Tambahkan opsi lain sesuai kebutuhan -->
+            </select>
+        </div>
+    </div>    
+      <div class="tm-form-group tm-mb-30">
+        <div class="tm-flex-container">
+        <label>Deskripsi</label>
+        <textarea rows="6" name="description" class="tm-form-control" placeholder="Deskripsi" required="">{{ wisata.description }}</textarea>
+        </div>
+      </div> 
+      <div class="tm-form-group">
+        <div class="tm-flex-container">
+        <label>Lokasi</label>
+        <input type="text" name="city" id="city" class="tm-form-control" placeholder="Lokasi" required="" value="{{ wisata.city }}"/>
+        </div>
+      </div>  
+      <div class="tm-form-group">
+        <div class="tm-flex-container">
+        <label>Rating</label>
+        <input type="text" name="rating" id="rating" class="tm-form-control" placeholder="Rating" required="" value="{{ wisata.rating }}"/>
+        </div>
+      </div>
+      <div class="tm-form-group">
+        <div class="tm-flex-container">
+        <label>Harga</label>
+        <input type="text" name="price" id="price" class="tm-form-control" placeholder="Harga" required="" value="{{ wisata.price }}"/>
+        </div>
+      </div>
+      <div class="tm-form-group">
+        <div class="tm-flex-container">
+        <label>URL Gambar</label>
+        <input type="text" name="image" id="image" class="tm-form-control" placeholder="URL Gambar" required="" value="{{ wisata.image }}"/>
+        </div>
+      </div> 
+      <div class="tm-form-group">
+        <div class="tm-flex-container">
+        <label>URL</label>
+        <input type="text" name="url" id="url" class="tm-form-control" placeholder="URL" required="" value="{{ wisata.url }}"/>
+        </div>
+      </div>      
+      <div>
+        <button type="submit" class="tm-btn-primary tm-align-right">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
