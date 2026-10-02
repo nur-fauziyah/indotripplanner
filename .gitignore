@@ -1,0 +1,18 @@
+# Mengabaikan folder cache Python (Sangat Penting!)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Mengabaikan folder Virtual Environment lokal kamu
+venv/
+ENV/
+env/
+
+# Mengabaikan file konfigurasi IDE / Code Editor (VS Code / PyCharm)
+.vscode/
+.idea/
+
+# Mengabaikan file database lokal sementara atau log
+*.db
+*.sqlite3
+*.log
